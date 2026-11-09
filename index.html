@@ -28,6 +28,7 @@ body{margin:0}img{max-width:100%}
   --magenta:#ab1552;     /* magenta do timbrado */
   --pink:#ff4d94;        /* rosa do "Escadinha" */
   --ok:#3fbf7f;
+  --brand:#e3246f;     /* logo e nome Cleoselma: sempre rosa */
   --display:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
   --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
   color-scheme:dark;
@@ -45,7 +46,7 @@ h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
 .brand{display:flex;align-items:center;gap:12px}
 .brand img{width:46px;height:auto}
 .brand b{display:block;font-family:var(--display);font-weight:900;font-size:1.15rem;letter-spacing:.06em}
-.brand span{display:block;font-family:var(--display);font-weight:600;font-size:.62rem;letter-spacing:.3em;color:var(--ink-soft)}
+.brand span{display:block;font-family:var(--display);font-weight:600;font-size:.62rem;letter-spacing:.3em;color:var(--brand)}
 .chip{align-self:flex-start;background:var(--magenta);padding:7px 14px;border-radius:3px}
 .hero .lead{font-family:var(--display);font-weight:700;font-size:1.1rem;margin-top:70px}
 .hero h1{font-weight:900;font-size:clamp(2.6rem,11vw,4.2rem);line-height:.98;letter-spacing:-.01em}
@@ -104,6 +105,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .btn:hover{background:#c41a5f}
 .btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
 .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink);font-size:.85rem;padding:10px 14px}
+.isca{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.feito{background:var(--ground);border:1px solid var(--ok);border-radius:8px;padding:14px 16px}
+.feito strong{font-family:var(--display);font-weight:800;color:var(--ok);font-size:1.1rem}
+.feito p{margin:4px 0 0}
+.ajuda{font-size:.85rem}
+.btn[disabled]{opacity:.5;cursor:default}
 .alt{font-size:.9rem;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
 .alt .num{font-family:var(--display);font-weight:800;color:var(--ink);user-select:all}
 
@@ -119,6 +126,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 
 footer{border-top:1px solid var(--line)}
 footer .wrap{padding-block:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:.8rem;color:var(--ink-soft)}
+footer .marca{color:var(--brand);font-weight:600}
 footer .tag{font-family:var(--display);font-weight:700;letter-spacing:.14em}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
@@ -194,21 +202,12 @@ footer .tag{font-family:var(--display);font-weight:700;letter-spacing:.14em}
       </ul>
     </section>
 
-    <section aria-labelledby="vid">
-      <div class="label">O convite</div>
-      <h2 id="vid">Dá o play</h2>
-      <div class="video">
-        <video id="video" controls playsinline preload="metadata" poster="poster.jpg">
-          <source src="convite.mp4" type="video/mp4">
-        </video>
-      </div>
-    </section>
 
     <section aria-labelledby="conf" id="confirmar">
       <div class="label">Confirme até sexta, 13 de novembro</div>
       <h2 id="conf">Vamos guardar seu lugar</h2>
       <form class="rsvp" id="rsvp" novalidate>
-        <p>Para organizarmos transporte e almoço, confirme até <strong>sexta-feira, 13 de novembro</strong>. Preencha e envie pelo WhatsApp do escritório; a mensagem já vai pronta.</p>
+        <p>Para organizarmos transporte e almoço, confirme até <strong>sexta-feira, 13 de novembro</strong>.</p>
         <div class="fields">
           <div class="f full"><label for="nome">Seu nome</label><input id="nome" autocomplete="name" required></div>
           <div class="f full"><label for="empresa">Empresa</label><input id="empresa" autocomplete="organization"></div>
@@ -217,10 +216,17 @@ footer .tag{font-family:var(--display);font-weight:700;letter-spacing:.14em}
             <select id="pessoas"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
           <div class="f full"><label for="obs">Alguma observação? (opcional)</label><textarea id="obs" placeholder="Ex.: vou no meu carro, restrição alimentar…"></textarea></div>
         </div>
-        <a class="btn" id="enviar" href="https://wa.me/5582996264298" target="_blank" rel="noopener" aria-disabled="true">Confirmar pelo WhatsApp</a>
-        <p class="msg" id="aviso">Escreva seu nome para liberar o botão.</p>
-        <div class="alt">Se o WhatsApp não abrir, mande para <span class="num" id="numero">(82) 99626-4298</span>
-          <button type="button" class="btn ghost" id="copiar">Copiar número</button></div>
+        <input type="text" id="site" name="site" tabindex="-1" autocomplete="off" aria-hidden="true" class="isca">
+        <button class="btn" id="confirmar-btn" type="submit">Confirmar presença</button>
+        <p class="msg" id="aviso" role="status"></p>
+        <div class="feito" id="feito" hidden>
+          <strong id="feitoTit">Presença confirmada!</strong>
+          <p>Recebemos sua confirmação. Nos vemos no dia 20, às 6h, na Cleoselma.</p>
+        </div>
+        <div class="alt" id="alt" hidden>Não conseguimos registrar agora. Envie pelo WhatsApp:
+          <a class="btn ghost" id="enviar" href="https://wa.me/5582996264298" target="_blank" rel="noopener">Confirmar pelo WhatsApp</a>
+          <span class="num" id="numero">(82) 99626-4298</span></div>
+        <p class="ajuda">Dúvidas: WhatsApp do escritório <span class="num">(82) 99626-4298</span></p>
       </form>
     </section>
 
@@ -230,7 +236,7 @@ footer .tag{font-family:var(--display);font-weight:700;letter-spacing:.14em}
 
 <footer>
   <div class="wrap">
-    <span>Cleoselma Contabilidade LTDA · Arapiraca/AL</span>
+    <span><span class="marca">Cleoselma Contabilidade LTDA</span> · Arapiraca/AL</span>
     <span class="tag">#CLEOEMMOVIMENTO</span>
   </div>
 </footer>
@@ -239,40 +245,40 @@ footer .tag{font-family:var(--display);font-weight:700;letter-spacing:.14em}
 (function(){
   const WA = "5582996264298";
   const $ = id => document.getElementById(id);
-  const enviar = $("enviar"), aviso = $("aviso");
-
-  function montar(){
-    const nome = $("nome").value.trim();
-    const empresa = $("empresa").value.trim();
-    const fone = $("fone").value.trim();
-    const n = $("pessoas").value;
-    const obs = $("obs").value.trim();
-    const linhas = [
-      "Olá! Confirmo presença no *Cleo em Movimento* — Cachoeira da Escadinha, 20/11.",
-      "",
-      "Nome: " + (nome || "-"),
-      empresa ? "Empresa: " + empresa : null,
-      fone ? "WhatsApp: " + fone : null,
-      "Pessoas: " + n,
-      obs ? "Obs.: " + obs : null
-    ].filter(l => l !== null);
-    enviar.href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(linhas.join("\n"));
-    const ok = nome.length > 1;
-    enviar.setAttribute("aria-disabled", ok ? "false" : "true");
-    aviso.textContent = ok ? "Ao tocar, o WhatsApp abre com a mensagem pronta. É só enviar." : "Escreva seu nome para liberar o botão.";
+  const val = id => $(id).value.trim();
+  function dados(){ return { nome: val("nome"), empresa: val("empresa"), fone: val("fone"), pessoas: $("pessoas").value, obs: val("obs"), site: $("site").value }; }
+  function linkWhats(d){
+    const l = ["Olá! Confirmo presença no *Cleo em Movimento*, Cachoeira da Escadinha, 20/11.", "", "Nome: " + d.nome,
+      d.empresa ? "Empresa: " + d.empresa : null, d.fone ? "WhatsApp: " + d.fone : null, "Pessoas: " + d.pessoas, d.obs ? "Obs.: " + d.obs : null].filter(x => x !== null);
+    return "https://wa.me/" + WA + "?text=" + encodeURIComponent(l.join("\n"));
   }
-  ["nome","empresa","fone","pessoas","obs"].forEach(id => $(id).addEventListener("input", montar));
-  $("rsvp").addEventListener("submit", e => e.preventDefault());
-  montar();
-
-  $("copiar").addEventListener("click", () => {
-    const btn = $("copiar");
-    const selecionar = () => { const r = document.createRange(); r.selectNodeContents($("numero")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Número selecionado"; };
+  async function endereco(){
+    const r = await fetch("endereco.json?t=" + Date.now(), { cache: "no-store" });
+    if (!r.ok) throw new Error("sem endereço");
+    return (await r.json()).url;
+  }
+  $("rsvp").addEventListener("submit", async e => {
+    e.preventDefault();
+    const d = dados(), btn = $("confirmar-btn"), aviso = $("aviso");
+    if (d.nome.length < 2){ aviso.textContent = "Escreva seu nome para confirmar."; $("nome").focus(); return; }
+    btn.disabled = true; aviso.textContent = "Enviando…"; $("alt").hidden = true;
     try {
-      navigator.clipboard.writeText("82996264298").then(() => { btn.textContent = "Copiado"; }, selecionar);
-    } catch(e){ selecionar(); }
+      const url = await endereco();
+      const ctl = new AbortController(); const t = setTimeout(() => ctl.abort(), 15000);
+      const r = await fetch(url + "/confirmar", { method: "POST", body: new URLSearchParams(d), signal: ctl.signal });
+      clearTimeout(t);
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok || !j.ok) throw new Error("recusado");
+      aviso.textContent = "";
+      $("feitoTit").textContent = "Presença confirmada, " + d.nome.split(" ")[0] + "!";
+      $("feito").hidden = false; btn.hidden = true;
+      ["nome","empresa","fone","pessoas","obs"].forEach(id => $(id).disabled = true);
+    } catch(err){
+      aviso.textContent = "";
+      $("enviar").href = linkWhats(d);
+      $("alt").hidden = false; btn.disabled = false;
+    }
   });
-
 })();
 </script>
 </body>
