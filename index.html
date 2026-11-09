@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Cleo em Movimento: trilha e banho na Cachoeira da Escadinha, Mar Vermelho/AL. Sexta, 20 de novembro, saída às 6h da Cleoselma.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cleo em Movimento · Cachoeira da Escadinha, 20/11">
+<meta property="og:description" content="Você é nosso convidado! Saída da Cleoselma às 6h. Confirme sua presença.">
+<meta property="og:image" content="https://marianaataide.github.io/cleo-em-movimento/preview.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:url" content="https://marianaataide.github.io/cleo-em-movimento/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="logo.png">
+<title>Cleo em Movimento · Escadinha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap">
+<style>
+body{margin:0}img{max-width:100%}
+/* Layout: convite de celular em coluna única — foto de abertura, programação em linha do tempo, confirmação. Visual escuro único, como a arte. */
+:root{
+  --ground:#1f1d1e;      /* grafite do timbrado, puxado para o magenta */
+  --panel:#2b2829;
+  --line:#3d393b;
+  --paper:#f2eff0;
+  --ink:#f6f3f4;
+  --ink-soft:#c9c1c4;
+  --magenta:#ab1552;     /* magenta do timbrado */
+  --pink:#ff4d94;        /* rosa do "Escadinha" */
+  --ok:#3fbf7f;
+  --display:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+.wrap{max-width:640px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+.label{font-family:var(--display);font-weight:700;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase}
+
+/* abertura */
+.hero{position:relative;background:var(--ground) url("cachoeira.jpg") center 30%/cover no-repeat}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(31,29,30,.35) 0%,rgba(31,29,30,.55) 45%,var(--ground) 100%)}
+.hero .wrap{position:relative;z-index:1;padding-block:28px 36px;display:flex;flex-direction:column;gap:22px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{width:46px;height:auto}
+.brand b{display:block;font-family:var(--display);font-weight:900;font-size:1.15rem;letter-spacing:.06em}
+.brand span{display:block;font-family:var(--display);font-weight:600;font-size:.62rem;letter-spacing:.3em;color:var(--ink-soft)}
+.chip{align-self:flex-start;background:var(--magenta);padding:7px 14px;border-radius:3px}
+.hero .lead{font-family:var(--display);font-weight:700;font-size:1.1rem;margin-top:70px}
+.hero h1{font-weight:900;font-size:clamp(2.6rem,11vw,4.2rem);line-height:.98;letter-spacing:-.01em}
+.hero h1 em{font-style:normal;color:var(--pink);display:block}
+.place{font-family:var(--display);font-weight:800;letter-spacing:.08em;font-size:1rem}
+
+/* data */
+.date{display:grid;grid-template-columns:auto 1fr;border-radius:8px;overflow:hidden;background:var(--paper);color:#2b2829}
+.date .day{background:var(--magenta);color:#fff;padding:16px 22px;text-align:center;font-family:var(--display);font-weight:900}
+.date .day b{display:block;font-size:2.6rem;line-height:1}
+.date .day span{font-size:.85rem;letter-spacing:.18em}
+.date .txt{padding:14px 18px;min-width:0}
+.date .txt strong{display:block;font-family:var(--display);font-weight:900;color:var(--magenta);font-size:1.15rem}
+.date .txt p{margin:4px 0 0;font-size:.95rem}
+
+main .wrap{display:flex;flex-direction:column;gap:44px;padding-block:8px 48px}
+section{display:flex;flex-direction:column;gap:16px}
+section > .label{color:var(--pink)}
+section h2{font-weight:800;font-size:1.45rem}
+
+/* programação */
+.timeline{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.timeline li{display:grid;grid-template-columns:72px 1fr;gap:14px;position:relative;padding-bottom:22px}
+.timeline li:last-child{padding-bottom:0}
+.timeline li::before{content:"";position:absolute;left:35px;top:34px;bottom:4px;width:2px;background:var(--line)}
+.timeline li:last-child::before{display:none}
+.timeline .t{font-family:var(--display);font-weight:900;font-size:1.3rem;color:var(--pink);text-align:center;line-height:1.2;padding-top:2px}
+.timeline .t small{display:block;font-size:.62rem;letter-spacing:.14em;color:var(--ink-soft);font-weight:700}
+.timeline h3{font-weight:800;font-size:1.05rem}
+.timeline p{margin:4px 0 0;color:var(--ink-soft);font-size:.95rem}
+a{color:var(--pink);text-underline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
+
+/* levar */
+.bring{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.bring li{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:8px 14px;font-weight:500;font-size:.95rem}
+
+/* vídeo */
+.video{display:flex;justify-content:center}
+.video video{width:100%;max-width:340px;aspect-ratio:9/16;border-radius:10px;background:#000;display:block}
+
+/* confirmação */
+.rsvp{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px 18px;display:flex;flex-direction:column;gap:16px}
+.rsvp p{margin:0;color:var(--ink-soft)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fields .full{grid-column:1/-1}
+@media (max-width:480px){.fields{grid-template-columns:1fr}}
+.f{display:flex;flex-direction:column;gap:6px;min-width:0}
+.f label{font-weight:600;font-size:.88rem}
+.f input,.f select,.f textarea{font:inherit;color:var(--ink);background:var(--ground);border:1px solid var(--line);border-radius:6px;padding:11px 12px;width:100%}
+.f textarea{min-height:70px;resize:vertical}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--display);font-weight:800;letter-spacing:.04em;font-size:1rem;background:var(--magenta);color:#fff;border:0;border-radius:6px;padding:14px 18px;text-decoration:none;cursor:pointer}
+.btn:hover{background:#c41a5f}
+.btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink);font-size:.85rem;padding:10px 14px}
+.alt{font-size:.9rem;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.alt .num{font-family:var(--display);font-weight:800;color:var(--ink);user-select:all}
+
+/* painel interno */
+.tbl{overflow-x:auto}
+.tbl table{width:100%;border-collapse:collapse;font-size:.92rem;font-variant-numeric:tabular-nums}
+.tbl th,.tbl td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}
+.tbl th{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.tbl td.n{text-align:right}
+.tbl button{background:none;border:0;color:var(--ink-soft);cursor:pointer;font:inherit;text-decoration:underline}
+.empty{color:var(--ink-soft);font-size:.92rem;margin:0}
+.msg{font-size:.88rem;color:var(--ink-soft);min-height:1.2em;margin:0}
+
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-block:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:.8rem;color:var(--ink-soft)}
+footer .tag{font-family:var(--display);font-weight:700;letter-spacing:.14em}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brand">
+      <img src="logo.png" alt="">
+      <div><b>CLEO EM MOVIMENTO</b><span>CLEOSELMA CONTABILIDADE</span></div>
+    </div>
+    <div class="chip label">Você é nosso convidado</div>
+    <div>
+      <div class="lead">Bora com a gente para a</div>
+      <h1>Cachoeira da <em>Escadinha</em></h1>
+    </div>
+    <div class="place">MAR VERMELHO · ALAGOAS</div>
+    <div class="date">
+      <div class="day"><b>20</b><span>NOV</span></div>
+      <div class="txt">
+        <strong>Sexta-feira, 20 de novembro</strong>
+        <p>Trilha, natureza e banho de cachoeira.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <section aria-labelledby="prog">
+      <div class="label">Programação</div>
+      <h2 id="prog">Como vai ser o dia</h2>
+      <ol class="timeline">
+        <li>
+          <div class="t">06h<small>SAÍDA</small></div>
+          <div>
+            <h3>Saída da Cleoselma</h3>
+            <p>Rua Governador Luiz Cavalcante, 712, Alto do Cruzeiro, Arapiraca. Chegue uns minutinhos antes.
+              <a href="https://www.google.com/maps/search/?api=1&query=Rua+Governador+Luiz+Cavalcante+712+Alto+do+Cruzeiro+Arapiraca+AL" target="_blank" rel="noopener">Ver no mapa</a></p>
+          </div>
+        </li>
+        <li>
+          <div class="t">🌿<small>MANHÃ</small></div>
+          <div>
+            <h3>Trilha e banho na Escadinha</h3>
+            <p>Mar Vermelho, Alagoas. Trilha, natureza e banho de cachoeira.
+              <a href="https://www.google.com/maps/search/?api=1&query=Cachoeira+da+Escadinha+Mar+Vermelho+AL" target="_blank" rel="noopener">Ver no mapa</a></p>
+          </div>
+        </li>
+        <li>
+          <div class="t">🍽<small>NA VOLTA</small></div>
+          <div>
+            <h3>Almoço no Solar dos Ferreiros</h3>
+            <p>Para fechar o passeio, almoço todos juntos no caminho de volta.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="levar">
+      <div class="label">Na mochila</div>
+      <h2 id="levar">O que levar</h2>
+      <ul class="bring">
+        <li>Roupa de banho</li>
+        <li>Protetor solar</li>
+        <li>Toalha</li>
+        <li>Calçado para trilha</li>
+        <li>Garrafa de água</li>
+        <li>Muita disposição</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="vid">
+      <div class="label">O convite</div>
+      <h2 id="vid">Dá o play</h2>
+      <div class="video">
+        <video id="video" controls playsinline preload="metadata" poster="poster.jpg">
+          <source src="convite.mp4" type="video/mp4">
+        </video>
+      </div>
+    </section>
+
+    <section aria-labelledby="conf" id="confirmar">
+      <div class="label">Confirme sua presença</div>
+      <h2 id="conf">Vamos guardar seu lugar</h2>
+      <form class="rsvp" id="rsvp" novalidate>
+        <p>Preencha e envie pelo WhatsApp do escritório. A mensagem já vai pronta.</p>
+        <div class="fields">
+          <div class="f full"><label for="nome">Seu nome</label><input id="nome" autocomplete="name" required></div>
+          <div class="f full"><label for="empresa">Empresa</label><input id="empresa" autocomplete="organization"></div>
+          <div class="f"><label for="fone">Seu WhatsApp</label><input id="fone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(82) 9 0000-0000"></div>
+          <div class="f"><label for="pessoas">Quantas pessoas vão</label>
+            <select id="pessoas"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
+          <div class="f full"><label for="obs">Alguma observação? (opcional)</label><textarea id="obs" placeholder="Ex.: vou no meu carro, restrição alimentar…"></textarea></div>
+        </div>
+        <a class="btn" id="enviar" href="https://wa.me/5582996264298" target="_blank" rel="noopener" aria-disabled="true">Confirmar pelo WhatsApp</a>
+        <p class="msg" id="aviso">Escreva seu nome para liberar o botão.</p>
+        <div class="alt">Se o WhatsApp não abrir, mande para <span class="num" id="numero">(82) 99626-4298</span>
+          <button type="button" class="btn ghost" id="copiar">Copiar número</button></div>
+      </form>
+    </section>
+
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Cleoselma Contabilidade LTDA · Arapiraca/AL</span>
+    <span class="tag">#CLEOEMMOVIMENTO</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const WA = "5582996264298";
+  const $ = id => document.getElementById(id);
+  const enviar = $("enviar"), aviso = $("aviso");
+
+  function montar(){
+    const nome = $("nome").value.trim();
+    const empresa = $("empresa").value.trim();
+    const fone = $("fone").value.trim();
+    const n = $("pessoas").value;
+    const obs = $("obs").value.trim();
+    const linhas = [
+      "Olá! Confirmo presença no *Cleo em Movimento* — Cachoeira da Escadinha, 20/11.",
+      "",
+      "Nome: " + (nome || "-"),
+      empresa ? "Empresa: " + empresa : null,
+      fone ? "WhatsApp: " + fone : null,
+      "Pessoas: " + n,
+      obs ? "Obs.: " + obs : null
+    ].filter(l => l !== null);
+    enviar.href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(linhas.join("\n"));
+    const ok = nome.length > 1;
+    enviar.setAttribute("aria-disabled", ok ? "false" : "true");
+    aviso.textContent = ok ? "Ao tocar, o WhatsApp abre com a mensagem pronta. É só enviar." : "Escreva seu nome para liberar o botão.";
+  }
+  ["nome","empresa","fone","pessoas","obs"].forEach(id => $(id).addEventListener("input", montar));
+  $("rsvp").addEventListener("submit", e => e.preventDefault());
+  montar();
+
+  $("copiar").addEventListener("click", () => {
+    const btn = $("copiar");
+    const selecionar = () => { const r = document.createRange(); r.selectNodeContents($("numero")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Número selecionado"; };
+    try {
+      navigator.clipboard.writeText("82996264298").then(() => { btn.textContent = "Copiado"; }, selecionar);
+    } catch(e){ selecionar(); }
+  });
+
+})();
+</script>
+</body>
+</html>
