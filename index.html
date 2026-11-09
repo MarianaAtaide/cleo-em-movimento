@@ -6,7 +6,7 @@
 <meta name="description" content="Cleo em Movimento: trilha e banho na Cachoeira da Escadinha, Mar Vermelho/AL. Sexta, 20 de novembro, saída às 6h da Cleoselma.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Cleo em Movimento · Cachoeira da Escadinha, 20/11">
-<meta property="og:description" content="Você é nosso convidado! Saída da Cleoselma às 6h. Confirme sua presença.">
+<meta property="og:description" content="Você é nosso convidado! Saída da Cleoselma às 6h. Confirme até sexta, 13/11.">
 <meta property="og:image" content="https://marianaataide.github.io/cleo-em-movimento/preview.jpg">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta property="og:url" content="https://marianaataide.github.io/cleo-em-movimento/">
@@ -80,6 +80,8 @@ a{color:var(--pink);text-underline-offset:3px}
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
 
 /* levar */
+.note{margin:0;color:var(--ink-soft)}
+.due{display:inline-block;margin-top:8px;font-family:var(--display);font-weight:800;font-size:.85rem;color:var(--magenta)}
 .bring{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
 .bring li{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:8px 14px;font-weight:500;font-size:.95rem}
 
@@ -90,6 +92,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 /* confirmação */
 .rsvp{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px 18px;display:flex;flex-direction:column;gap:16px}
 .rsvp p{margin:0;color:var(--ink-soft)}
+.rsvp p strong{color:var(--ink)}
 .fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .fields .full{grid-column:1/-1}
 @media (max-width:480px){.fields{grid-template-columns:1fr}}
@@ -139,6 +142,7 @@ footer .tag{font-family:var(--display);font-weight:700;letter-spacing:.14em}
       <div class="txt">
         <strong>Sexta-feira, 20 de novembro</strong>
         <p>Trilha, natureza e banho de cachoeira.</p>
+        <a class="due" href="#confirmar">Confirme até sexta, 13/11</a>
       </div>
     </div>
   </div>
@@ -180,12 +184,12 @@ footer .tag{font-family:var(--display);font-weight:700;letter-spacing:.14em}
     <section aria-labelledby="levar">
       <div class="label">Na mochila</div>
       <h2 id="levar">O que levar</h2>
+      <p class="note">A água é por nossa conta.</p>
       <ul class="bring">
         <li>Roupa de banho</li>
         <li>Protetor solar</li>
         <li>Toalha</li>
         <li>Calçado para trilha</li>
-        <li>Garrafa de água</li>
         <li>Muita disposição</li>
       </ul>
     </section>
@@ -201,10 +205,10 @@ footer .tag{font-family:var(--display);font-weight:700;letter-spacing:.14em}
     </section>
 
     <section aria-labelledby="conf" id="confirmar">
-      <div class="label">Confirme sua presença</div>
+      <div class="label">Confirme até sexta, 13 de novembro</div>
       <h2 id="conf">Vamos guardar seu lugar</h2>
       <form class="rsvp" id="rsvp" novalidate>
-        <p>Preencha e envie pelo WhatsApp do escritório. A mensagem já vai pronta.</p>
+        <p>Para organizarmos transporte e almoço, confirme até <strong>sexta-feira, 13 de novembro</strong>. Preencha e envie pelo WhatsApp do escritório; a mensagem já vai pronta.</p>
         <div class="fields">
           <div class="f full"><label for="nome">Seu nome</label><input id="nome" autocomplete="name" required></div>
           <div class="f full"><label for="empresa">Empresa</label><input id="empresa" autocomplete="organization"></div>
