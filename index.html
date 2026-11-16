@@ -6,7 +6,7 @@
 <meta name="description" content="Cleo em Movimento: trilha e banho na Cachoeira da Escadinha, Mar Vermelho/AL. Sexta, 20 de novembro, saída às 6h da Cleoselma.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Cleo em Movimento · Cachoeira da Escadinha, 20/11">
-<meta property="og:description" content="Você é nosso convidado! Saída da Cleoselma às 6h. Confirme até sexta, 13/11.">
+<meta property="og:description" content="Você é nosso convidado! Saída da Cleoselma às 6h. Saída às 6h, sexta, 20/11.">
 <meta property="og:image" content="https://marianaataide.github.io/cleo-em-movimento/preview.jpg">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta property="og:url" content="https://marianaataide.github.io/cleo-em-movimento/">
@@ -150,7 +150,7 @@ footer .tag{font-family:var(--display);font-weight:700;letter-spacing:.14em}
       <div class="txt">
         <strong>Sexta-feira, 20 de novembro</strong>
         <p>Trilha, natureza e banho de cachoeira.</p>
-        <a class="due" href="#confirmar">Confirme até sexta, 13/11</a>
+        <a class="due" href="#confirmar">Confirmações encerradas</a>
       </div>
     </div>
   </div>
@@ -214,30 +214,13 @@ footer .tag{font-family:var(--display);font-weight:700;letter-spacing:.14em}
     </section>
 
     <section aria-labelledby="conf" id="confirmar">
-      <div class="label">Confirme até sexta, 13 de novembro</div>
-      <h2 id="conf">Vamos guardar seu lugar</h2>
-      <form class="rsvp" id="rsvp" novalidate>
-        <p>Para organizarmos transporte e almoço, confirme até <strong>sexta-feira, 13 de novembro</strong>.</p>
-        <div class="fields">
-          <div class="f full"><label for="nome">Seu nome</label><input id="nome" autocomplete="name" required></div>
-          <div class="f full"><label for="empresa">Empresa</label><input id="empresa" autocomplete="organization"></div>
-          <div class="f"><label for="fone">Seu WhatsApp</label><input id="fone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(82) 9 0000-0000"></div>
-          <div class="f"><label for="pessoas">Quantas pessoas vão</label>
-            <select id="pessoas"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
-          <div class="f full"><label for="obs">Alguma observação? (opcional)</label><textarea id="obs" placeholder="Ex.: vou no meu carro, restrição alimentar…"></textarea></div>
-        </div>
-        <input type="text" id="site" name="site" tabindex="-1" autocomplete="off" aria-hidden="true" class="isca">
-        <button class="btn" id="confirmar-btn" type="submit">Confirmar presença</button>
-        <p class="msg" id="aviso" role="status"></p>
-        <div class="feito" id="feito" hidden>
-          <strong id="feitoTit">Presença confirmada!</strong>
-          <p>Recebemos sua confirmação. Nos vemos no dia 20, às 6h, na Cleoselma.</p>
-        </div>
-        <div class="alt" id="alt" hidden>Não conseguimos registrar agora. Envie pelo WhatsApp:
-          <a class="btn ghost" id="enviar" href="https://wa.me/5582996264298" target="_blank" rel="noopener">Confirmar pelo WhatsApp</a>
-          <span class="num" id="numero">(82) 99626-4298</span></div>
+      <div class="label">Confirmações</div>
+      <h2 id="conf">Confirmações encerradas</h2>
+      <div class="rsvp">
+        <p>O prazo de confirmação terminou na sexta, 13 de novembro. Obrigado a todos que confirmaram!</p>
+        <p>Nos vemos na <strong>sexta-feira, 20 de novembro, às 6h</strong>, na Cleoselma.</p>
         <p class="ajuda">Dúvidas: WhatsApp do escritório <span class="num">(82) 99626-4298</span></p>
-      </form>
+      </div>
     </section>
 
 
@@ -250,46 +233,5 @@ footer .tag{font-family:var(--display);font-weight:700;letter-spacing:.14em}
     <span class="tag">#CLEOEMMOVIMENTO</span>
   </div>
 </footer>
-
-<script>
-(function(){
-  const WA = "5582996264298";
-  const $ = id => document.getElementById(id);
-  const val = id => $(id).value.trim();
-  function dados(){ return { nome: val("nome"), empresa: val("empresa"), fone: val("fone"), pessoas: $("pessoas").value, obs: val("obs"), site: $("site").value }; }
-  function linkWhats(d){
-    const l = ["Olá! Confirmo presença no *Cleo em Movimento*, Cachoeira da Escadinha, 20/11.", "", "Nome: " + d.nome,
-      d.empresa ? "Empresa: " + d.empresa : null, d.fone ? "WhatsApp: " + d.fone : null, "Pessoas: " + d.pessoas, d.obs ? "Obs.: " + d.obs : null].filter(x => x !== null);
-    return "https://wa.me/" + WA + "?text=" + encodeURIComponent(l.join("\n"));
-  }
-  async function endereco(){
-    const r = await fetch("endereco.json?t=" + Date.now(), { cache: "no-store" });
-    if (!r.ok) throw new Error("sem endereço");
-    return (await r.json()).url;
-  }
-  $("rsvp").addEventListener("submit", async e => {
-    e.preventDefault();
-    const d = dados(), btn = $("confirmar-btn"), aviso = $("aviso");
-    if (d.nome.length < 2){ aviso.textContent = "Escreva seu nome para confirmar."; $("nome").focus(); return; }
-    btn.disabled = true; aviso.textContent = "Enviando…"; $("alt").hidden = true;
-    try {
-      const url = await endereco();
-      const ctl = new AbortController(); const t = setTimeout(() => ctl.abort(), 15000);
-      const r = await fetch(url + "/confirmar", { method: "POST", body: new URLSearchParams(d), signal: ctl.signal });
-      clearTimeout(t);
-      const j = await r.json().catch(() => ({}));
-      if (!r.ok || !j.ok) throw new Error("recusado");
-      aviso.textContent = "";
-      $("feitoTit").textContent = "Presença confirmada, " + d.nome.split(" ")[0] + "!";
-      $("feito").hidden = false; btn.hidden = true;
-      ["nome","empresa","fone","pessoas","obs"].forEach(id => $(id).disabled = true);
-    } catch(err){
-      aviso.textContent = "";
-      $("enviar").href = linkWhats(d);
-      $("alt").hidden = false; btn.disabled = false;
-    }
-  });
-})();
-</script>
 </body>
 </html>
